@@ -5,12 +5,12 @@ use App\Models\User;
 
 require __DIR__ . '/autoload.php';
 
-//$data = Article::findAll();
-//debug($data);
+$data = Article::findAll();
+debug($data);
 
 
-$users = User::findAll();
-debug($users);
+//$users = User::findAll();
+//debug($users);
 
 
 

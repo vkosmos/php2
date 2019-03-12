@@ -11,27 +11,20 @@ class Db
         $this->dbh = new \PDO('mysql:host=localhost;dbname=php2', 'root', '');
     }
 
-    public function query($sql, $params = [], $class = null)
+    public function query($sql, $params = [], $class = '')
     {
         $sth = $this->dbh->prepare($sql);
         $sth->execute($params);
-        $sth->setFetchMode(\PDO::FETCH_ASSOC);
-        $data = $sth->fetchAll();
 
         if (null === $class){
-            return $data;
+            $sth->setFetchMode(\PDO::FETCH_ASSOC);
         }
-
-        $ret = [];
-        foreach ($data as $row) {
-            $obj = new $class;
-            foreach ($row as $name => $value) {
-                $obj->$name = $value;
-            }
-            $ret[] = $obj;
+        else {
+            $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
         }
+        $data = $sth->fetchAll();
 
-        return $ret;
+        return $data;
     }
 
 
