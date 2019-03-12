@@ -16,10 +16,10 @@ class Article extends Model
     {
         $db = new Db();
 
-        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY ID DESC LIMIT ?';
-        $params[] = $number;
+        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY ID DESC LIMIT :n';
+        $params = [':n' => $number];
 
-        $data = $db->queryN(
+        $data = $db->query(
             $sql,
             $params,
             static::class
@@ -28,4 +28,3 @@ class Article extends Model
         return $data;
     }
 }
-

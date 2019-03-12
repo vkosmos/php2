@@ -9,29 +9,15 @@ class Db
     public function __construct()
     {
         $this->dbh = new \PDO('mysql:host=localhost;dbname=php2', 'root', '');
+
+        //Данная строчка внесена, чтобы справиться с ошибкой PDO при подстановке параметров в запросы с LIMIT
+        $this->dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
     }
 
     public function query($sql, $params = [], $class = null)
     {
         $sth = $this->dbh->prepare($sql);
         $sth->execute($params);
-
-        if (null === $class){
-            $sth->setFetchMode(\PDO::FETCH_ASSOC);
-        }
-        else {
-            $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
-        }
-        $data = $sth->fetchAll();
-
-        return $data;
-    }
-
-    public function queryN($sql, $data = [], $class = null)
-    {
-        $sth = $this->dbh->prepare($sql);
-        $sth->bindValue(1, $data[0], \PDO::PARAM_INT);
-        $sth->execute();
 
         if (null === $class){
             $sth->setFetchMode(\PDO::FETCH_ASSOC);
