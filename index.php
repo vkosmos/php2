@@ -9,14 +9,8 @@ $data = Article::findAll();
 debug($data);
 
 
-//$users = User::findAll();
-//debug($users);
-
-
-
-
-
-
+$users = User::findAll();
+debug($users);
 
 
 

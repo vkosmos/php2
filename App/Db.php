@@ -27,6 +27,10 @@ class Db
         return $data;
     }
 
-
+    public function execute($sql, $params = [])
+    {
+        $sth = $this->dbh->prepare($sql);
+        return $sth->execute($params);
+    }
 
 }
