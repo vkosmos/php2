@@ -5,14 +5,6 @@ use App\Models\User;
 
 require __DIR__ . '/autoload.php';
 
-//$data = Article::findAll();
-//debug($data);
-//
-//
-//$users = User::findAll();
-//debug($users);
+$data = Article::findAll();
 
-debug(Article::findById(1));
-
-
-
+include(__DIR__ . '/templates/index.php');
