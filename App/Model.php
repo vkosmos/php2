@@ -23,4 +23,5 @@ abstract class Model
         $params = [':id' => $id];
         return $db->query($sql, $params, static::class);
     }
+
 }

@@ -12,4 +12,20 @@ class Article extends Model
     public $title;
     public $content;
 
+    public static function findN(int $number)
+    {
+        $db = new Db();
+
+        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY ID DESC LIMIT ?';
+        $params[] = $number;
+
+        $data = $db->queryN(
+            $sql,
+            $params,
+            static::class
+        );
+
+        return $data;
+    }
 }
+
