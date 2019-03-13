@@ -12,13 +12,12 @@
 <body>
 <h1>Новость подробно</h1>
 <?php
-    if (null === $article){
+    if (false === $article){
 ?>
         <p>
             Такой новости не существует.
         </p>
         <a href="index.php">Вернуться к списку новостей</a>
-
 <?php
         die;
     }

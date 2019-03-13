@@ -8,7 +8,7 @@ $article = null;
 
 if (isset($_GET['id'])){
     $id = $_GET['id'];
-    $article = Article::findById($id)[0];
+    $article = Article::findById($id);
 }
 
 include __DIR__ . '/templates/article.php';
